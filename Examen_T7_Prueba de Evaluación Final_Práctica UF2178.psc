@@ -57,8 +57,7 @@ Algoritmo Examen
 			Escribir 'Escribe el número de documento a visualizar: '
 			Leer doc
 			Escribir ''
-			
-			visualizar(doc, pid, contenido);
+			visualizar(doc, pid, contenido); //carga del subproceso
 			Escribir ''
 			Escribir 'Acción terminada. Pulsa cualquier tecla para contiuar'
 			Leer pausa
@@ -74,7 +73,7 @@ Algoritmo Examen
 				Escribir ''
 				Escribir 'Escriba el Nº del documento: '
 				Leer doc
-				busquedanumero(doc, contenido);
+				busquedanumero(doc, contenido); //carga del subproceso
 				Escribir ''
 				Escribir 'Acción terminada. Pulsa cualquier tecla para contiuar'
 				Leer pausa
@@ -96,13 +95,13 @@ Algoritmo Examen
 			Escribir 'Escribe el número de documento a editar: '
 			Leer doc
 			Escribir ''
-			visualizar(doc, pid, contenido);
+			visualizar(doc, pid, contenido); //carga del subproceso
 			Escribir ''
 			Escribir 'Ahora escribe el texto a añadir'
 			Leer text
 			Escribir ''
 			Escribir ''
-			edicion(doc, text, pid, contenido);
+			edicion(doc, text, pid, contenido); //carga del subproceso
 			Escribir ''
 			Escribir 'Acción terminada. Pulsa cualquier tecla para contiuar'
 			Leer pausa
@@ -111,7 +110,7 @@ Algoritmo Examen
 			Escribir 'Escribe a contnuación: '
 			Leer text
 			Escribir ''
-			creacion(text, contenido)
+			creacion(text, contenido) //carga del subproceso
 			Escribir ''
 			Escribir 'Acción terminada. Pulsa cualquier tecla para contiuar'
 			Leer pausa
@@ -120,16 +119,19 @@ Algoritmo Examen
 			Escribir 'Escribe el nº de documento que desea borrar:'
 			Leer doc;
 			Escribir ''
-			visualizar(doc, pid, contenido);
+			visualizar(doc, pid, contenido); //carga del subproceso
 			Escribir ''
 			Escribir ''
-			borrado(doc, pid, contenido);
+			borrado(doc, pid, contenido); //carga del subproceso
 			Escribir ''
 			Escribir 'Acción terminada. Pulsa cualquier tecla para contiuar'
 			Leer pausa
 		FinSi
 		Si menu='6' Entonces //Si elegimos el 6
-			Escribir 'Impresión de documentos'
+			Escribir 'Opción No disponible'
+			Escribir ''
+			Escribir 'Acción terminada. Pulsa cualquier tecla para contiuar'
+			Leer pausa
 		FinSi
 		Si menu='7' Entonces //Si elegimos el 7
 			Escribir 'Opción No disponible'
@@ -142,18 +144,18 @@ Algoritmo Examen
 FinAlgoritmo
 
 // Visualización de documentos
-SubProceso visualizar(a Por Valor, pid Por Referencia, contenido Por Referencia)
+SubProceso visualizar(a Por Valor, pid Por Referencia, contenido Por Referencia) //a es doc, pid es del array pid, contenido es del array contenido
 	Escribir 'Contenido del documento nº: ', a, ' con Nº PID: ', pid[a], ' es:';
 	Escribir contenido[a];
 FinSubProceso
 
 // Búsqueda de documentos
-SubProceso busquedanumero(a Por Valor, contenido Por Referencia)
+SubProceso busquedanumero(a Por Valor, contenido Por Referencia) //a es doc, contenido es del array contenido
 	Escribir contenido[a];
 FinSubProceso
 
 // Edición de documentos
-SubProceso edicion(a Por Valor, text Por Referencia, pid Por Referencia, contenido Por Referencia)
+SubProceso edicion(a Por Valor, text Por Referencia, pid Por Referencia, contenido Por Referencia) //a es doc, text es la inserción del texto escrito, pid es del array pid, contenido es del array contenido
 	Si contenido[a]='$' Entonces //Cuando el contenido está vacío
 		contenido[a] <- text;
 	SiNo
@@ -167,7 +169,7 @@ SubProceso edicion(a Por Valor, text Por Referencia, pid Por Referencia, conteni
 FinSubProceso
 
 // Crear documentos
-SubProceso creacion(text Por Referencia, contenido Por Referencia)
+SubProceso creacion(text Por Referencia, contenido Por Referencia) //text es la inserción del texto escrito, contenido es del array contenido
 	i=1 //Inicio de contador
 	Mientras i < 9 Hacer //Cuando encuentre un espacio vacío añade el texto
 		Si contenido[i]='$' Entonces
@@ -181,7 +183,7 @@ SubProceso creacion(text Por Referencia, contenido Por Referencia)
 FinSubProceso
 
 // Borrar documentos
-SubProceso borrado(a Por Valor, pid Por Referencia, contenido Por Referencia)
+SubProceso borrado(a Por Valor, pid Por Referencia, contenido Por Referencia) //a es doc, pid es del array pid, contenido es del array contenido
 	contenido[a]='$' //El contenido pasa a ser un espacio vacío, que es $
 	Escribir '> > Contenido Actualizado :)'
 	Escribir ''
